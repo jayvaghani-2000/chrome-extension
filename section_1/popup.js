@@ -21,26 +21,22 @@ updateTimeElement();
 setInterval(updateTimeElement, 1000);
 
 stopBtn.addEventListener("click", () => {
-  chrome.alarms.clear("timer-alarm", () => {
-    console.log("Alarm has been stop");
+  chrome.storage.local.set({
+    isRunning: false,
   });
 });
 
 startBtn.addEventListener("click", () => {
-  chrome.alarms.create("timer-alarm", { periodInMinutes: 1 / 60 });
+  chrome.storage.local.set({
+    isRunning: true,
+  });
 });
 
 resetBtn.addEventListener("click", () => {
-  chrome.storage.local.set(
-    {
-      timer: 0,
-    },
-    () => {
-      chrome.alarms.clear("timer-alarm", () => {
-        console.log("Alarm has been stop");
-      });
-    }
-  );
+  chrome.storage.local.set({
+    isRunning: false,
+    timer: 0
+  });
 });
 
 //Runs when popup is opened
