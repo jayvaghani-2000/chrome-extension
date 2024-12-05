@@ -7,6 +7,7 @@ module.exports = {
   devtool: "cheap-module-source-map",
   entry: {
     popup: path.resolve("src/popup/popup.tsx"),
+    options: path.resolve("src/options/options.tsx"),
   },
   //webpack just complie js / json, tsx and files needs to be handle like this
   module: {
@@ -25,19 +26,31 @@ module.exports = {
     filename: "./[name]/[name].js",
     path: path.resolve(__dirname, "dist"),
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   plugins: [
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve("src/manifest.json"),
+          from: path.resolve("src/static"),
           to: path.resolve(__dirname, "dist"),
         },
       ],
     }),
-    new HtmlPlugin({
-      title: "React Exntension",
-      filename: "./popup/popup.html",
-      chunks: ["popup"],
-    }),
+    ...getHtmlPlugins(["popup", "options"]),
   ],
 };
+
+function getHtmlPlugins(chunks) {
+  return chunks.map(
+    (i) =>
+      new HtmlPlugin({
+        title: "React Exntension",
+        filename: `./${i}/${i}.html`,
+        chunks: [i],
+      })
+  );
+}
