@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "hotbot.ai",
+  "description": "Chrome extension in react!",
+  "version": "1.0.0",
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon_tv.png",
+      "24": "icon_tv.png",
+      "32": "icon_tv.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "hotbot.ai"
+  },
+  "options_page": "./options.html"
+}
