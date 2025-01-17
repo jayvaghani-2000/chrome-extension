@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./options.css";
+import styles from "./options.css";
 
 const Test = () => (
   <div>
@@ -15,6 +15,7 @@ document.body.appendChild(rootDiv);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <style>{styles.toString()}</style>
     <Test />
   </React.StrictMode>
 );

@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const tailwindcss = require("tailwindcss");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -25,7 +26,9 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          "style-loader",
+          {
+            loader: "to-string-loader",
+          },
           "css-loader",
           {
             loader: "postcss-loader",

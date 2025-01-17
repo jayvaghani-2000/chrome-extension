@@ -28,5 +28,11 @@
       "all_frames": true,
       "run_at": "document_idle"
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content-script/content-script.css"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

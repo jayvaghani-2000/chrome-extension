@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./popup.css";
+import styles from "./popup.css";
 
 const Test = () => (
   <div>
@@ -16,6 +16,7 @@ document.body.appendChild(rootDiv);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <style>{styles.toString()}</style>
     <Test />
   </React.StrictMode>
 );
