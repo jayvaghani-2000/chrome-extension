@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import styles from "./popup.css";
+import styles from "../styles/index.css";
 
 const Test = () => (
   <div>

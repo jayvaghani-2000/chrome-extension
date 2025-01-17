@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import styles from "./options.css";
+import styles from "../styles/index.css";
 
 const Test = () => (
   <div>
+     <p className="text-primary">class </p>
+     <p className="text-muted">class </p>
     <p className="text-pink-500">Hello world</p>
   </div>
 );

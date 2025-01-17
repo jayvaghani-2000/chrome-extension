@@ -50,6 +50,9 @@ module.exports = {
   // what files this moduel should apply to
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "."),
+    },
   },
   output: {
     filename: "./[name]/[name].js",
