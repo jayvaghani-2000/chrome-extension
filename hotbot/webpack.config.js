@@ -13,7 +13,14 @@ module.exports = {
     popup: path.resolve("src/popup/popup.tsx"),
     options: path.resolve("src/options/options.tsx"),
     background: path.resolve("src/background/background.ts"),
-    "content-script": path.resolve("src/content-script/content-script.tsx"),
+    "snapchat-content": path.resolve(
+      "src/content-script/snapchat/snapchat.tsx"
+    ),
+    "scrape-snapchat": path.resolve(
+      "src/scripts/scrapper/snapchat/snapchat.ts"
+    ),
+    "scrape-pure": path.resolve("src/scripts/scrapper/pure/pure.ts"),
+    spoof: path.resolve("src/scripts/spoof/main.ts"),
   },
   // module define additional rules as webpack builds, by default webpack handle js/json file so to mandle ts/tsx file we need to define rules
   module: {
@@ -55,7 +62,7 @@ module.exports = {
     },
   },
   output: {
-    filename: "./[name]/[name].js",
+    filename: outputFiles,
     path: path.resolve(__dirname, "dist"), // define path for output
   },
   // it will share modules, like same react module will share between each chunks
@@ -93,4 +100,15 @@ function getHtmlPlugins(chunks) {
         chunks: [i],
       })
   );
+}
+
+function outputFiles(name) {
+  const chunkName = name.chunk.name;
+  if (["scrape-pure", "scrape-snapchat", "spoof"].includes(chunkName)) {
+    return "./scripts/[name]/[name].js";
+  }
+  if (["snapchat-content"].includes(chunkName)) {
+    return "./content-script/[name]/[name].js";
+  }
+  return "./[name]/[name].js";
 }

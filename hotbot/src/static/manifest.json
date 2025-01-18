@@ -23,16 +23,20 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["./content-script/content-script.js"],
+      "matches": ["https://www.snapchat.com/*", "https://web.snapchat.com/*"],
+      "js": [
+        "./content-script/snapchat-content/snapchat-content.js",
+        "./scripts/scrape-snapchat/scrape-snapchat.js",
+        "./scripts/spoof/spoof.js"
+      ],
       "all_frames": true,
       "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["content-script/content-script.css"],
-      "matches": ["<all_urls>"]
+      "resources": ["*"],
+      "matches": ["*://*/*"]
     }
   ]
 }

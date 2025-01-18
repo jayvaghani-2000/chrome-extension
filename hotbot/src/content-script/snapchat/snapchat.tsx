@@ -1,8 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { HOTBOT_CONTENT_ELEMENT_ID } from "../lib/constant";
+import {
+  HOTBOT_CONTENT_ELEMENT_ID,
+  PORTAL_CONTAINER_ID,
+} from "../../lib/constant";
 import App from "./app";
-import styles from "../styles/index.css";
+import styles from "../../styles/index.css";
 
 const ROOT_ID = HOTBOT_CONTENT_ELEMENT_ID;
 
@@ -56,6 +59,7 @@ const injectReact = (rootId: string): void => {
     root.render(
       <React.StrictMode>
         <App />
+        <div className="fixed z-[21474836661]" id={PORTAL_CONTAINER_ID}></div>
       </React.StrictMode>
     );
   } catch (error) {
