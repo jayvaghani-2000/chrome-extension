@@ -70,7 +70,7 @@ module.exports = {
     splitChunks: {
       chunks(chunk) {
         // exclude `my-excluded-chunk`
-        return chunk.name !== "content-script";
+        return !["snapchat-content"].includes(chunk.name);
       },
     },
   },

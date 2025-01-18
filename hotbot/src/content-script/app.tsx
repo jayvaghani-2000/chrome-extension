@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../components/ui/button";
 import {
   Select,
   SelectContent,
@@ -7,17 +7,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select";
-import { PORTAL_CONTAINER_ID } from "@/src/lib/constant";
+import { PORTAL_CONTAINER_ID } from "../lib/constant";
 
 const App = () => {
   const [show, setShow] = useState(false);
+
   return (
     <>
-      <div className="relative z-[2147483666]">
+      <div className="relative z-[934723864354]">
         <p className="text-primary">class </p>
         <p className="text-muted">class </p>
-        <p className="text-pink-400">Jay</p>
-        <p className="text-[#000000]">Kiran</p>
+        <p className="text-pink-400">App</p>
+        <p className="text-[#000000]">App</p>
         <Button
           onClick={() => {
             setShow(true);
@@ -26,7 +27,7 @@ const App = () => {
           AA
         </Button>
         {show && (
-          <Select open>
+          <Select>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Theme" />
             </SelectTrigger>
@@ -37,7 +38,6 @@ const App = () => {
             </SelectContent>
           </Select>
         )}
-        Copy
       </div>
       <div className="fixed z-[21474836661]" id={PORTAL_CONTAINER_ID}></div>
     </>
