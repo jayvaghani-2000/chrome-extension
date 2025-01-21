@@ -1,43 +1,27 @@
 import React, { useState } from "react";
-import { Button } from "../../components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/src/components/ui/select";
 import { PORTAL_CONTAINER_ID } from "@/src/lib/constant";
+import Demo from "./demo";
+import { Button } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 
 const App = () => {
   const [show, setShow] = useState(false);
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
   return (
     <>
       <div className="relative z-[2147483666]">
-        <p className="text-primary">class </p>
-        <p className="text-muted">class </p>
-        <p className="text-pink-400">Jay</p>
-        <p className="text-[#000000]">Kiran</p>
-        <Button
-          onClick={() => {
-            setShow(true);
-          }}
-        >
-          AA
-        </Button>
-        {show && (
-          <Select open>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Theme" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
-            </SelectContent>
-          </Select>
-        )}
-        Copy
+        <Button variant="contained">Contained</Button>
+        <Button variant="outlined">Outlined</Button>
+        <Demo />
+
+        
       </div>
       <div className="fixed z-[21474836661]" id={PORTAL_CONTAINER_ID}></div>
     </>

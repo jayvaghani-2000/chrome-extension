@@ -3,6 +3,9 @@ import { createRoot } from "react-dom/client";
 import { HOTBOT_CONTENT_ELEMENT_ID } from "../../lib/constant";
 import App from "./app";
 import styles from "../../styles/index.css";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const ROOT_ID = HOTBOT_CONTENT_ELEMENT_ID;
 
@@ -21,6 +24,11 @@ const injectReact = (rootId: string): void => {
 
     const shadow = container.attachShadow({ mode: "open" });
 
+    const cache = createCache({
+      key: "css",
+      prepend: true,
+      container: shadow,
+    });
     // Create and inject style element with Tailwind CSS
     const styleSheet = document.createElement("style");
     styleSheet.textContent = `
@@ -52,12 +60,39 @@ const injectReact = (rootId: string): void => {
 
     // Create container for React
     const reactContainer = document.createElement("div");
+
     shadow.appendChild(reactContainer);
 
     const root = createRoot(reactContainer);
+    const shadowTheme = createTheme({
+      components: {
+        MuiPopover: {
+          defaultProps: {
+            container: reactContainer,
+          },
+        },
+        MuiPopper: {
+          defaultProps: {
+            container: reactContainer,
+            style: {
+              zIndex: 999999999
+            }
+          },
+        },
+        MuiModal: {
+          defaultProps: {
+            container: reactContainer,
+          },
+        },
+      },
+    });
     root.render(
       <React.StrictMode>
-        <App />
+        <CacheProvider value={cache}>
+          <ThemeProvider theme={shadowTheme}>
+            <App />
+          </ThemeProvider>
+        </CacheProvider>
       </React.StrictMode>
     );
   } catch (error) {
