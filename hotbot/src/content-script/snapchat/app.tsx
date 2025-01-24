@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "../../components/ui/button";
+import React, { useState } from "react";
 import createCache from "@emotion/cache";
-import retargetEvents from "react-shadow-dom-retarget-events";
 import { CacheProvider } from "@emotion/react";
 import Select from "react-select";
 

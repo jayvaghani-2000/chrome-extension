@@ -23,7 +23,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.snapchat.com/*", "https://web.snapchat.com/*"],
+      "matches": ["<all_urls>"],
       "js": [
         "./content-script/snapchat-content/snapchat-content.js",
         "./scripts/scrape-snapchat/scrape-snapchat.js",
