@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import { HOTBOT_CONTENT_ELEMENT_ID } from "../../lib/constant";
 import App from "./app";
 import styles from "../../styles/index.css";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
 
 const ROOT_ID = HOTBOT_CONTENT_ELEMENT_ID;
 
@@ -53,6 +55,12 @@ const injectReact = (rootId: string): void => {
     // Create container for React
     const reactContainer = document.createElement("div");
     shadow.appendChild(reactContainer);
+
+    const cahhe = createCache({
+      container: shadow,
+      key: "test",
+      prepend: false,
+    });
 
     const root = createRoot(reactContainer);
     root.render(
